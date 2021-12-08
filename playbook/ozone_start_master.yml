@@ -1,0 +1,38 @@
+
+- name: start ozone scm
+  hosts: scm
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_scm.sh
+    async: 120
+    poll: 5
+- name: start ozone om
+  hosts: om
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Start om
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5
+- name: start ozone s3g
+  hosts: s3g
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Start s3g
+    command: /hadoop/app/ozone/bin/start_s3g.sh
+    async: 120
+    poll: 5
+- name: start ozone recon
+  hosts: recon
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Start recon
+    command: /hadoop/app/ozone/bin/start_recon.sh
+    async: 120
+    poll: 5
+

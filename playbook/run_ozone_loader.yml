@@ -1,0 +1,11 @@
+- name: install ozone
+  hosts: all
+  become: true
+
+  tasks:
+
+
+  - name: Run ozone loader
+    shell: "(/hadoop/app/ozone/test.sh >/tmp/ozone_loader.log 2>&1 &)"
+    async: 120
+    poll: 5  

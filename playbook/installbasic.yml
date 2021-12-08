@@ -1,0 +1,31 @@
+- name: install default package
+  hosts: all
+  become: true
+  
+  tasks:
+  - name: Add epel-release repo
+    yum:
+      name: epel-release
+      state: present
+
+  - name: Install package java
+    yum:
+      name:  java-1.8.0-openjdk, java-1.8.0-openjdk-devel
+      state: present 
+  - name: Set Java home for everyone
+    lineinfile:
+      path: /etc/profile
+      line: 'export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk"'
+  - name: Set Java home for everyone in path
+    lineinfile:
+      path: /etc/profile
+      line: 'export PATH=$JAVA_HOME/bin:$PATH'
+            
+  - name: Install package utils
+    yum:
+      name:  htop, nano, iotop, wget, unzip, sysstat
+      state: present 
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+

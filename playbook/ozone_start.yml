@@ -1,0 +1,3 @@
+
+- import_playbook: ozone_start_master.yml
+- import_playbook: ozone_start_datanode.yml

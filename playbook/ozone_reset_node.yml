@@ -1,0 +1,11 @@
+
+- name: Reset all ozone node
+  hosts: all
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Delete logs and data of ozone
+    command: /hadoop/app/ozone/bin/reset_node.sh
+    async: 60
+    poll: 5
+

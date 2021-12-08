@@ -1,0 +1,13 @@
+
+- name: start recon
+  hosts: recon
+  become: true
+  become_user: ozone
+  tasks:
+  - name: start recon
+    command: /hadoop/app/ozone/bin/start_recon.sh
+    async: 120
+    poll: 5    
+
+
+

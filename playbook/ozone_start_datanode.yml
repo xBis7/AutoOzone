@@ -1,0 +1,10 @@
+
+- name: start ozone datanode
+  hosts: datanode
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Start datanode
+    command: /hadoop/app/ozone/bin/start_datanode.sh
+    async: 45
+    poll: 5

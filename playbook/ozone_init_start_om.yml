@@ -1,0 +1,19 @@
+
+- name: init & start ozone OM master
+  hosts: om
+  become: true
+  become_user: ozone
+  tasks:
+
+
+  - name: Init OM
+    command: /hadoop/app/ozone/bin/init_om.sh
+    async: 120
+    poll: 5    
+
+  - name: Start OM
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5  
+
+

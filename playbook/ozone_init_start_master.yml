@@ -1,0 +1,27 @@
+
+- name: init & start ozone masters
+  hosts: scm
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init SCM
+    command: /hadoop/app/ozone/bin/init_scm.sh
+    async: 120
+    poll: 5    
+
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_scm.sh
+    async: 120
+    poll: 5  
+
+  - name: Init OM
+    command: /hadoop/app/ozone/bin/init_om.sh
+    async: 120
+    poll: 5    
+
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5  
+
+

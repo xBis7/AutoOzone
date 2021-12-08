@@ -1,0 +1,11 @@
+
+- name: start s3g
+  hosts: s3g
+  become: true
+  become_user: ozone
+  tasks:
+
+  - name: Start s3g
+    command: /hadoop/app/ozone/bin/start_s3g.sh
+    async: 120
+    poll: 5  

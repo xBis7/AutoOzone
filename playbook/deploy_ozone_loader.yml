@@ -1,0 +1,35 @@
+- name: install ozone loader
+  hosts: all
+  become: true
+
+  tasks:
+
+  - name: Copy ozone loader parralel script
+    copy:
+      src: ./ozone/loader/test.sh
+      dest: /hadoop/app/ozone/test.sh
+      owner: ozone
+      group: hadoop
+      mode: '0754'
+      force: yes
+  - name: Copy ozone loader code
+    copy:
+      src: ./ozone/loader/SimpleTest.java
+      dest: /hadoop/app/ozone/SimpleTest.java
+      owner: ozone
+      group: hadoop
+      mode: '0754'
+      force: yes
+  - name: Copy compile loader script
+    copy:
+      src: ./ozone/loader/compileLoader.sh
+      dest: /hadoop/app/ozone/compileLoader.sh
+      owner: ozone
+      group: hadoop
+      mode: '0754'
+      force: yes
+
+  - name: Compile loader class
+    command: /hadoop/app/ozone/compileLoader.sh
+    async: 120
+    poll: 5  

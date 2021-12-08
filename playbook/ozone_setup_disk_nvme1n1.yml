@@ -1,0 +1,35 @@
+- name: Partition amd mount disk for Ozone
+  hosts: all
+  become: true
+  
+  tasks:
+  - name: Ensure linux group "hadoop" exists
+    group:
+      name: hadoop
+      state: present
+
+  - name: create data folder for ozone
+    file:
+      path: /hadoop/ozone/data/disk1
+      state: directory
+      group: hadoop
+      mode: '0775'
+  - name: Create a new primary partition nvme1n1
+    parted:
+      device: /dev/nvme1n1
+      number: 1
+      state: present
+  - name: Create a ext4 filesystem on /dev/nvme1n1
+    filesystem:
+      fstype: ext4
+      dev: /dev/nvme1n1
+  - name: Mount up device, set fstab
+    mount:
+      path: /hadoop/ozone/data/disk1
+      src: /dev/nvme1n1
+      fstype: ext4
+      opts: noatime
+      state: present      
+
+  - name: mount all
+    shell: mount -a

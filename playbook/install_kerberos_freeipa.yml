@@ -1,0 +1,20 @@
+
+- name: install freeipa client + join domain
+  hosts: all
+  become: true
+  vars:
+    admin_pwd: setme
+
+  tasks:
+  - name: Install freeipa client
+    yum:
+      name: freeipa-client
+      state: present
+      
+  - name: Freeipa joind domain
+    shell: ipa-client-install --unattended --no-ntp --mkhomedir -p admin@EU-WEST-1.COMPUTE.INTERNAL -w {{ admin_pwd }} --domain=eu-west-1.compute.internal --server=ip-10-0-88-182.eu-west-1.compute.internal --realm=EU-WEST-1.COMPUTE.INTERNAL
+
+  - name: CHange ticket cache config to file instead of keyring
+    shell: sed -i 's/KEYRING:persistent:/\/tmp\/krb5cc_/g' /etc/krb5.conf
+
+

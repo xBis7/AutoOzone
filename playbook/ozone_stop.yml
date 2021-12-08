@@ -1,0 +1,2 @@
+- import_playbook: ozone_stop_datanode.yml
+- import_playbook: ozone_stop_master.yml
