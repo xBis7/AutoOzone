@@ -3,12 +3,13 @@ This repo contains script to deploy a version of Apache Ozone on n servers.
 
 Pre-requisite:
 In order to work it need the following:
-- The servers need to be up and running
+- The servers where ozone will be running need to be up and running
 - The OS should be centos 7 or centos 8 (recommand centos 7 for the moment)
 - User "centos" with full privilege need to exist on all the servers
 - Possible to ssh with public/private ssh key on hte all the server for the "centos" account
 - Network connectivity between all the servers
 - Network connectivity betweens hte servers and the server running the ansible playbook
+- The server where the ansible playbook (this git) will be started from need to have ansible installed
 
 Before starting the installation:
 - Modify the inv file by changing all the "setme" with the right value. This means set the name of the pem file for the centos user and write the FQDN for each type of servers. you can mention the same server in multiple type (OM/SCM/S3G/etc...)
