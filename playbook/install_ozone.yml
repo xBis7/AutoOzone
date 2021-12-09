@@ -72,6 +72,8 @@
       group: hadoop
       mode: '0644'
 
+
+- import_playbook: set_linux_config.yml      
 - import_playbook: ozone_init_start_scm.yml
 - import_playbook: ozone_init_start_om.yml
 - import_playbook: ozone_start_datanode.yml

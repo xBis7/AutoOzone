@@ -1,0 +1,57 @@
+- name: install ozone
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Increase nofile soft/hard limit for the user ozone
+    community.general.pam_limits:
+      domain: ozone
+      limit_type: '-'
+      limit_item: nofile
+      value: 128000
+  - name: Increase nproc soft/hard limit for the user joe
+    community.general.pam_limits:
+      domain: ozone
+      limit_type: '-'
+      limit_item: nproc
+      value: 65535
+
+  - name: Install package sysfs
+    yum:
+      name:  sysfsutils
+      state: present
+
+  - name: disable transparent huge pages for performance - persistent change
+    lineinfile:
+      path: /etc/sysfs.conf
+      create: true
+      regexp: '^kernel\/mm\/transparent\_hugepage\/enabled'
+      line: "kernel/mm/transparent_hugepage/enabled = never"
+
+  - name: disable transparent huge pages for performance - live change
+    shell: echo never {{ ">" }} /sys/kernel/mm/transparent_hugepage/enabled
+
+
+  - name: Set swappiness to 1
+    ansible.posix.sysctl:
+      name: vm.swappiness
+      value: '1'
+      state: present 
+
+  - name: Set dirty vm ratio
+    ansible.posix.sysctl:
+      name: vm.dirty_ratio
+      value: '20'
+      state: present 
+
+  - name: Set vm dirty background
+    ansible.posix.sysctl:
+      name: vm.dirty_background_ratio
+      value: '10'
+      state: present 
+
+  - name: Set net.core.somaxconn to 4096
+    ansible.posix.sysctl:
+      name: net.core.somaxconn
+      value: '4096'
+      state: present 
