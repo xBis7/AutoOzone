@@ -16,5 +16,5 @@
 
   - name: CHange ticket cache config to file instead of keyring
     shell: sed -i 's/KEYRING:persistent:/\/tmp\/krb5cc_/g' /etc/krb5.conf
-
-
+  
+- import_playbook: generate_keytab.yml

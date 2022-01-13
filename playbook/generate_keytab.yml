@@ -1,0 +1,10 @@
+
+- name: start ozone datanode
+  hosts: datanode
+  become: true
+  become_user: root
+  tasks:
+  - name: Generate ozone service principal and keytab
+    command: /hadoop/app/ozone/bin/get_ipa_keytab.sh
+    async: 45
+    poll: 5
