@@ -1,0 +1,50 @@
+
+- name: init & start ozone SCM1 HA masters
+  hosts: scm1
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init SCM
+    command: /hadoop/app/ozone/bin/init_scm.sh
+    async: 120
+    poll: 5
+    ignore_errors: True
+
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_scm.sh
+    async: 120
+    poll: 5  
+
+- name: init & start ozone SCM2 HA masters
+  hosts: scm2
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init SCM
+    command: /hadoop/app/ozone/bin/bootstrap_scm.sh
+    async: 120
+    poll: 5
+    ignore_errors: True    
+
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_scm.sh
+    async: 120
+    poll: 5  
+
+- name: init & start ozone SCM3 HA masters
+  hosts: scm3
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init SCM
+    command: /hadoop/app/ozone/bin/bootstrap_scm.sh
+    async: 120
+    poll: 5    
+    ignore_errors: True
+    
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_scm.sh
+    async: 120
+    poll: 5  
+
+

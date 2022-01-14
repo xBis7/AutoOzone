@@ -1,9 +1,10 @@
 
+
 - import_playbook: deploy_ozone.yml
-- import_playbook: install_kerberos_freeipa
+- import_playbook: install_kerberos_freeipa.yml
 - import_playbook: generate_keytab.yml      
-- import_playbook: ozone_init_start_scm.yml
-- import_playbook: ozone_init_start_om.yml
+- import_playbook: ozone_init_start_scm_ha.yml
+- import_playbook: ozone_init_start_om_ha.yml
 - import_playbook: ozone_start_datanode.yml
 - import_playbook: ozone_start_s3g.yml
 - import_playbook: ozone_start_recon.yml

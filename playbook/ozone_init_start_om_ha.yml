@@ -1,0 +1,43 @@
+- name: init & start ozone HA om1 
+  hosts: om1
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init OM
+    command: /hadoop/app/ozone/bin/init_om.sh
+    async: 120
+    poll: 5    
+    ignore_errors: True
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5  
+- name: init & start ozone HA masters OM2
+  hosts: om2
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init OM
+    command: /hadoop/app/ozone/bin/bootstrap_om.sh
+    async: 120
+    poll: 5    
+    ignore_errors: True
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5  
+
+- name: init & start ozone HA masters OM3
+  hosts: om3
+  become: true
+  become_user: ozone
+  tasks:
+  - name: Init OM
+    command: /hadoop/app/ozone/bin/bootstrap_om.sh
+    async: 120
+    poll: 5    
+    ignore_errors: True
+  - name: Start SCM
+    command: /hadoop/app/ozone/bin/start_om.sh
+    async: 120
+    poll: 5  

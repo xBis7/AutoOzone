@@ -1,9 +1,15 @@
 
 - name: start ozone datanode
-  hosts: datanode
+  hosts: all
   become: true
   become_user: root
   tasks:
+  - name: create install folder
+    file:
+      path: /etc/security/keytabs
+      state: directory
+      group: hadoop
+      mode: '0775'
   - name: Generate ozone service principal and keytab
     command: /hadoop/app/ozone/bin/get_ipa_keytab.sh
     async: 45
