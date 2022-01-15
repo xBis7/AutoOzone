@@ -25,7 +25,10 @@ ansible-playbook -i inv /data/teamcluster/autoozone/playbook/installbasic.yml
 ```bash
 ansible-playbook -i inv /data/teamcluster/autoozone/playbook/install_ozone.yml
 ```
-
+For a secure and HA cluster used instead the following playbook:
+```bash
+ansible-playbook -i inv /data/teamcluster/autoozone/playbook/install_ozone_secure_ha.yml
+```
 If you want to stop your cluster:
 ```bash
 ansible-playbook -i inv /data/teamcluster/autoozone/playbook/ozone_stop.yml
@@ -38,5 +41,14 @@ If you want to update the ozone-site.xml file and restart the ozone cluster, upd
 ```bash
 ansible-playbook -i inv /data/teamcluster/autoozone/playbook/ozone_update_config_restart_all.yml
 ```
+If you want to redeploy all the configwithout restarting any service use:
+```bash
+ansible-playbook -i inv /data/teamcluster/autoozone/playbook/ozone_update_config.yml
+```
 
+If you want to "reset" all the node which mean, delete all data, db and logs use the following playbook
+```bash
+ansible-playbook -i inv /data/teamcluster/autoozone/playbook/ozone_reset_node.yml
+```
+Keep in mind that before a reset you need to stop all the service with a playbook and after the reset you will need to init the OM/SCM. they are specific playbook for this
 There are few other script/playbook to perform specific actions like restart specific servers type and not the all cluster.
