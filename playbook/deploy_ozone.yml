@@ -67,20 +67,4 @@
       group: hadoop
       mode: '0754'
 
-  - name: Copy core-site.xml
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: ozone
-      group: hadoop
-      mode: '0644'
-  - name: Copy ozone-site.xml
-    copy:
-      src: ./ozone/config/ozone-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: ozone
-      group: hadoop
-      mode: '0644'
-
-
 - import_playbook: set_linux_config.yml

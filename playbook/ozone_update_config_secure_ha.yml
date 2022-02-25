@@ -1,0 +1,22 @@
+
+- name: install ozone
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Copy core-site.xml
+    copy:
+      src: ./ozone/config/core-site_secure.xml
+      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ozone-site.xml
+    copy:
+      src: ./ozone/config/ozone-site_secure_ha.xml
+      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+
+
