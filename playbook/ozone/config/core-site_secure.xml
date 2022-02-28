@@ -5,5 +5,24 @@
   limitations under the License. See accompanying LICENSE file.
 --> <!-- Put site-specific property overrides in this file. --> 
 <configuration> 
-</configuration>
+<property> 
+	<name>hadoop.security.auth_to_local</name> 
+        <value>RULE:[1:$1@$0](.*@EU-WEST-1.COMPUTE.INTERNAL)s/@.*// 
+		RULE:[2:$1@$0](.*@EU-WEST-1.COMPUTE.INTERNAL)s/@.*// </value>
+		                  
 
+</property> 
+<property>
+	<name>hadoop.http.authentication.type</name> 
+	<value>kerberos</value> 
+</property> 
+<property> 
+	<name>dfs.data.transfer.protection</name> 
+        <value>authentication</value>
+</property>
+ <property> 
+	<name>hadoop.security.authentication</name> 
+	<value>kerberos</value> 
+</property>
+	
+</configuration>

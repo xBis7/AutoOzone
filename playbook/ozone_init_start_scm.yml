@@ -1,6 +1,6 @@
 
 - name: init & start ozone SCM masters
-  hosts: scm
+  hosts: scm1
   become: true
   become_user: ozone
   tasks:
