@@ -1,5 +1,5 @@
 
-- import_playbook: deploy_ozone_fcq.yml
+- import_playbook: deploy_ozone.yml
 - import_playbook: ozone_update_config_secure_ha_fcq.yml
 - import_playbook: install_kerberos_freeipa.yml
 - import_playbook: generate_keytab.yml      

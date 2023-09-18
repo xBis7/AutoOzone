@@ -1,5 +1,5 @@
 
-- import_playbook: deploy_ozone_fcq.yml
+- import_playbook: deploy_ozone.yml
 - import_playbook: ozone_update_config_ha_fcq.yml    
 - import_playbook: ozone_init_start_scm_ha.yml
 - import_playbook: ozone_init_start_om_ha.yml

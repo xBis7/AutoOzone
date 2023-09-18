@@ -3,242 +3,36 @@
   become: true
 
   tasks:
-
-  - name: Import external variables
-    include_vars: 
-      file: variables.yml
-
-# oz1
-  - name: Create directories on path if not exist, 'oz1'
+  - name: Create directories on path if not exist
     file:
       path: /hadoop/app/ozone/etc/hadoop
       state: directory
-      owner: oz1
+      owner: ozone
       group: hadoop
       mode: '0755'
       force: yes
-    run_once: true
-    delegate_to: "{{ om1_scm1_hostname }}"
-  - name: Copy core-site.xml, 'oz1'
+  - name: Copy core-site.xml
     copy:
       src: ./ozone/config/core-site.xml
       dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz1
+      owner: ozone
       group: hadoop
       mode: '0644'
-    run_once: true
-    delegate_to: "{{ om1_scm1_hostname }}"
-  - name: Copy ozone-site.xml, 'oz1'
+  - name: Copy ozone-site.xml
     copy:
       src: ./ozone/config/ozone-site_ha_fcq.xml
       dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz1
+      owner: ozone
       group: hadoop
       mode: '0644'
-    run_once: true
-    delegate_to: "{{ om1_scm1_hostname }}"  
-  - name: Copy variables.dtd, 'oz1'
+  - name: Copy variables.dtd
     copy:
       src: ./ozone/config/variables.dtd
       dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz1
+      owner: ozone
       group: hadoop
       mode: '0644'
-    run_once: true
-    delegate_to: "{{ om1_scm1_hostname }}"
 
-# oz2
-  - name: Create directories on path if not exist, 'oz2'
-    file:
-      path: /hadoop/app/ozone/etc/hadoop
-      state: directory
-      owner: oz2
-      group: hadoop
-      mode: '0755'
-      force: yes
-    run_once: true
-    delegate_to: "{{ om2_scm2_hostname }}"
-  - name: Copy core-site.xml, 'oz2'
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz2
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om2_scm2_hostname }}"
-  - name: Copy ozone-site.xml, 'oz2'
-    copy:
-      src: ./ozone/config/ozone-site_ha_fcq.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz2
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om2_scm2_hostname }}"  
-  - name: Copy variables.dtd, 'oz2'
-    copy:
-      src: ./ozone/config/variables.dtd
-      dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz2
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om2_scm2_hostname }}"
 
-# oz3
-  - name: Create directories on path if not exist, 'oz3'
-    file:
-      path: /hadoop/app/ozone/etc/hadoop
-      state: directory
-      owner: oz3
-      group: hadoop
-      mode: '0755'
-      force: yes
-    run_once: true
-    delegate_to: "{{ om3_scm3_hostname }}"
-  - name: Copy core-site.xml, 'oz3'
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz3
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om3_scm3_hostname }}"
-  - name: Copy ozone-site.xml, 'oz3'
-    copy:
-      src: ./ozone/config/ozone-site_ha_fcq.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz3
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om3_scm3_hostname }}"  
-  - name: Copy variables.dtd, 'oz3'
-    copy:
-      src: ./ozone/config/variables.dtd
-      dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz3
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ om3_scm3_hostname }}"
 
-# oz4
-  - name: Create directories on path if not exist, 'oz4'
-    file:
-      path: /hadoop/app/ozone/etc/hadoop
-      state: directory
-      owner: oz4
-      group: hadoop
-      mode: '0755'
-      force: yes
-    run_once: true
-    delegate_to: "{{ dn1_hostname }}"
-  - name: Copy core-site.xml, 'oz4'
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz4
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn1_hostname }}"
-  - name: Copy ozone-site.xml, 'oz4'
-    copy:
-      src: ./ozone/config/ozone-site_ha_fcq.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz4
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn1_hostname }}"  
-  - name: Copy variables.dtd, 'oz4'
-    copy:
-      src: ./ozone/config/variables.dtd
-      dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz4
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn1_hostname }}"
-
-# oz5
-  - name: Create directories on path if not exist, 'oz5'
-    file:
-      path: /hadoop/app/ozone/etc/hadoop
-      state: directory
-      owner: oz5
-      group: hadoop
-      mode: '0755'
-      force: yes
-    run_once: true
-    delegate_to: "{{ dn2_hostname }}"
-  - name: Copy core-site.xml, 'oz5'
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz5
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn2_hostname }}"
-  - name: Copy ozone-site.xml, 'oz5'
-    copy:
-      src: ./ozone/config/ozone-site_ha_fcq.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz5
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn2_hostname }}"  
-  - name: Copy variables.dtd, 'oz5'
-    copy:
-      src: ./ozone/config/variables.dtd
-      dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz5
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn2_hostname }}"
-
-# oz6
-  - name: Create directories on path if not exist, 'oz6'
-    file:
-      path: /hadoop/app/ozone/etc/hadoop
-      state: directory
-      owner: oz6
-      group: hadoop
-      mode: '0755'
-      force: yes
-    run_once: true
-    delegate_to: "{{ dn3_hostname }}"
-  - name: Copy core-site.xml, 'oz6'
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: oz6
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn3_hostname }}"
-  - name: Copy ozone-site.xml, 'oz6'
-    copy:
-      src: ./ozone/config/ozone-site_ha_fcq.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: oz6
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn3_hostname }}"  
-  - name: Copy variables.dtd, 'oz6'
-    copy:
-      src: ./ozone/config/variables.dtd
-      dest: /hadoop/app/ozone/etc/hadoop/variables.dtd
-      owner: oz6
-      group: hadoop
-      mode: '0644'
-    run_once: true
-    delegate_to: "{{ dn3_hostname }}"
 
