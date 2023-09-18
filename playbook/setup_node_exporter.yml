@@ -1,0 +1,62 @@
+- name: install node exporter
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Ensure linux group "hadoop" exists
+    group:
+      name: hadoop
+      state: present
+
+
+  - name: Add the user 'nodeusr' 
+    user:
+      name: nodeusr
+      state: present
+      
+
+
+  - name: create tmp install folder
+    file:
+      path: /tmp/nodeexporter
+      state: directory
+      group: hadoop
+      mode: '0775'
+
+  - name: Download node exporter
+    get_url:
+      url: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz
+      dest: /tmp/nodeexporter/node_exporter-1.4.0.linux-amd64.tar.gz
+      mode: '0775'
+  
+  - name: Extract node exporter jar
+    unarchive:
+      src: /tmp/nodeexporter/node_exporter-1.4.0.linux-amd64.tar.gz
+      dest: /tmp/nodeexporter/
+      remote_src: yes
+      mode: '0775'
+      group: hadoop
+      extra_opts: [--strip-components=1]
+
+
+  - name: Copy service file for node exporter
+    copy:
+      src: ./service_file/node_exporter.service
+      dest: /etc/systemd/system/node_exporter.service
+      owner: nodeusr
+      mode: '0644'
+
+  - name: Copy service file for node exporter
+    copy:
+      src: /tmp/nodeexporter/node_exporter 
+      dest: /usr/local/bin/
+      owner: nodeusr
+      mode: '0755'
+      remote_src: true
+  - name: Restart service node_exporter, in all cases, also issue daemon-reload to pick up config changes
+    ansible.builtin.systemd:
+      state: restarted
+      daemon_reload: yes
+      name: node_exporter
+    
+

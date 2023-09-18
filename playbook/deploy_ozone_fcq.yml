@@ -1,0 +1,421 @@
+- name: install ozone
+  hosts: all
+  become: true
+
+  tasks:
+
+  - name: Import external variables
+    include_vars: 
+      file: variables.yml
+
+# Create group 'hadoop'
+  - name: Ensure linux group "hadoop" exists
+    group:
+      name: hadoop
+      state: present
+
+# Create a separate user per host and set permissions
+  - name: Create user 'oz1' for 'om1/scm1'
+    user:
+      name: oz1
+      state: present
+      group: hadoop
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+  - name: Set directory permissions for user 'oz1'
+    file:
+      path: "/home/oz1"
+      state: directory
+      owner: oz1
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+
+  - name: Create user 'oz2' for 'om2/scm2'
+    user:
+      name: oz2
+      state: present
+      group: hadoop
+    run_once: true  
+    delegate_to: "{{ om2_scm2_hostname }}"
+  - name: Set directory permissions for user 'oz2'
+    file:
+      path: "/home/oz2"
+      state: directory
+      owner: oz2
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+
+  - name: Create user 'oz3' for 'om3/scm3'
+    user:
+      name: oz3
+      state: present
+      group: hadoop
+    run_once: true  
+    delegate_to: "{{ om3_scm3_hostname }}"
+  - name: Set directory permissions for user 'oz3'
+    file:
+      path: "/home/oz3"
+      state: directory
+      owner: oz3
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+
+  - name: Create user 'oz4' for 'dn1'
+    user:
+      name: oz4
+      state: present
+      group: hadoop
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+  - name: Set directory permissions for user 'oz4'
+    file:
+      path: "/home/oz4"
+      state: directory
+      owner: oz4
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+
+  - name: Create user 'oz5' for 'dn2'
+    user:
+      name: oz5
+      state: present
+      group: hadoop
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+  - name: Set directory permissions for user 'oz5'
+    file:
+      path: "/home/oz5"
+      state: directory
+      owner: oz5
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+
+  - name: Create user 'oz6' for 'dn3'
+    user:
+      name: oz6
+      state: present
+      group: hadoop
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+  - name: Set directory permissions for user 'oz6'
+    file:
+      path: "/home/oz6"
+      state: directory
+      owner: oz6
+      group: hadoop
+      mode: "0755"
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+
+# Create ozone folders per user
+# oz1      
+  - name: create install folder, 'oz1'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+  - name: create data folder for ozone, 'oz1'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+  - name: create install folder, 'oz1'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+
+# oz2
+  - name: create install folder, 'oz2'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+  - name: create data folder for ozone, 'oz2'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+  - name: create install folder, 'oz2'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+
+# oz3
+  - name: create install folder, 'oz3'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+  - name: create data folder for ozone, 'oz3'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+  - name: create install folder, 'oz3'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+
+# oz4
+  - name: create install folder, 'oz4'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+  - name: create data folder for ozone, 'oz4'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+  - name: create install folder, 'oz4'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+
+# oz5
+  - name: create install folder, 'oz5'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+  - name: create data folder for ozone, 'oz5'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+  - name: create install folder, 'oz5'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+
+# oz6
+  - name: create install folder, 'oz6'
+    file:
+      path: /hadoop/app/ozone
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+  - name: create data folder for ozone, 'oz6'
+    file:
+      path: /hadoop/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+  - name: create install folder, 'oz6'
+    file:
+      path: /hadoop/app/ozone/data
+      state: directory
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+
+# Copy ozone tar per user, to set ownership
+  - name: Copy ozone tar on 'om1/scm1'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz1
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+
+  - name: Copy ozone tar on 'om2/scm2'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz2
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+
+  - name: Copy ozone tar on 'om3/scm3'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz3
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+
+  - name: Copy ozone tar on 'dn1'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz4
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+
+  - name: Copy ozone tar on 'dn2'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz5
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+
+  - name: Copy ozone tar on 'dn3'
+    copy:
+      src: ../../ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      owner: oz6
+      group: hadoop
+      mode: '0775'
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+
+# Extract ozone and set path for all hosts
+  - name: Extract Ozone jar
+    unarchive:
+      src: /hadoop/app/ozone/ozone-gj-short-files-fix.tar.gz
+      dest: /hadoop/app/ozone/
+      remote_src: yes
+      mode: '0775'
+      group: hadoop
+      extra_opts: [--strip-components=1]
+
+  - name: Set Ozone for everyone in path
+    lineinfile:
+      path: /etc/profile
+      line: 'export PATH=/hadoop/app/ozone/bin:$PATH' 
+
+  - name: Change ozone script to source /etc/profile
+    lineinfile:
+      path: /hadoop/app/ozone/bin/ozone
+      line: 'source /etc/profile'
+      insertafter: .*bash\n
+      group: hadoop
+
+# Copy ozone scripts per user, to set ownership
+  - name: Copy ozone scripts on 'om1/scm1'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz1
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ om1_scm1_hostname }}"
+
+  - name: Copy ozone scripts on 'om2/scm2'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz2
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ om2_scm2_hostname }}"
+
+  - name: Copy ozone scripts on 'om3/scm3'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz3
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ om3_scm3_hostname }}"
+
+  - name: Copy ozone scripts on 'dn1'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz4
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ dn1_hostname }}"
+
+  - name: Copy ozone scripts on 'dn2'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz5
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ dn2_hostname }}"
+
+  - name: Copy ozone scripts on 'dn3'
+    copy:
+      src: ./ozone/scripts/
+      dest: /hadoop/app/ozone/bin/
+      owner: oz6
+      group: hadoop
+      mode: '0754'
+    run_once: true
+    delegate_to: "{{ dn3_hostname }}"
+
+- import_playbook: set_linux_config.yml

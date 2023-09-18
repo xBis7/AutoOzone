@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE configuration SYSTEM "variables.dtd">
+
 <configuration>
+
     <property>
         <name>ozone.om.address</name>
-        <value>ip-10-0-106-124.eu-west-1.compute.internal</value>
+        <value>&om1-hostname;</value>
         <tag>OM, REQUIRED</tag>
         <description>
       The address of the Ozone OM service. This allows clients to discover
@@ -26,12 +29,12 @@
 
     <property>
         <name>ozone.om.db.dirs</name>
-        <value>/hadoop/ozone/data/disk1</value>	
+        <value>/hadoop/ozone/data/disk1/om</value>	
 	</property>
 
     <property>
         <name>ozone.scm.db.dirs</name>
-        <value>/hadoop/ozone/data/disk1</value>	
+        <value>/hadoop/ozone/data/disk1/scm</value>	
 	</property>
 
     <property>
@@ -40,7 +43,7 @@
 	</property>
 	<property>
         <name>ozone.recon.db.dir</name>
-        <value>/hadoop/ozone/data/disk1</value>	
+        <value>/hadoop/ozone/data/disk1/recon</value>	
 	</property>
 
 
@@ -75,16 +78,16 @@
 	</property>		
 	<property>
         <name>ozone.recon.http-address</name>
-        <value>ip-10-0-106-124.eu-west-1.compute.internal:9888</value>	
+        <value>&recon-hostname;:9888</value>
 	</property>	
 	<property>
         <name>ozone.recon.address</name>
-        <value>ip-10-0-106-124.eu-west-1.compute.internal:9891</value>	
+        <value>&recon-hostname;:9891</value>
 	</property>	
 	
     <property>
         <name>ozone.scm.client.address</name>
-        <value>ip-10-0-106-124.eu-west-1.compute.internal</value>
+        <value>&scm1-hostname;</value>
         <tag>OZONE, SCM, REQUIRED</tag>
         <description>
       The address of the Ozone SCM client service. This is a required setting.
@@ -95,7 +98,7 @@
     </property>
     <property>
         <name>ozone.scm.names</name>
-        <value>ip-10-0-106-124.eu-west-1.compute.internal</value>
+        <value>&scm1-hostname;</value>
         <tag>OZONE, REQUIRED</tag>
         <description>
       The value of this property is a set of DNS | DNS:PORT | IP
@@ -108,158 +111,12 @@
 	
 	
 	<property>
-        <name>ozone.security.enabled</name>
-        <value>true</value>	
-	</property>	
-
-	<property>
-        <name>hadoop.security.authentication</name>
-        <value>kerberos</value>	
-	</property>	
-	<property>
-        <name>hdds.grpc.tls.enabled</name>
-        <value>true</value>	
-		<tag>Ozone,HDDS,SECURITY,TLS</tag>
-	</property>	
-
-	<property>
         <name>dfs.data.transfer.protection</name>
         <value>authentication</value>	
 	</property>	
-	<property>
-        <name>ozone.security.http.kerberos.enabled</name>
-        <value>true</value>	
-	</property>	
-	<property>
-        <name>ozone.http.filter.initializers</name>
-        <value>org.apache.hadoop.security.AuthenticationFilterInitializer</value>	
-	</property>	
 
 
 
 
 
-
-	<property>
-        <name>hdds.scm.http.auth.type</name>
-        <value>kerberos</value>	
-	</property>
-	<property>
-        <name>ozone.s3g.http.auth.type</name>
-        <value>kerberos</value>	
-	</property>
-	<property>
-        <name>hdds.datanode.http.auth.type</name>
-        <value>kerberos</value>	
-	</property>
-		<property>
-        <name>ozone.om.http.auth.type</name>
-        <value>kerberos</value>	
-	</property>	
-	<property>
-        <name>ozone.recon.http.auth.type</name>
-        <value>kerberos</value>	
-	</property>
-	
-	
-	
-	<property>
-        <name>hdds.scm.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>hdds.scm.kerberos.keytab.file</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>	
-
-
-	<property>
-        <name>hdds.scm.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>hdds.scm.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-	<property>
-        <name>ozone.om.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.om.kerberos.keytab.file</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-	<property>
-        <name>ozone.om.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.om.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>	
-
-
-	<property>
-        <name>ozone.s3g.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.s3g.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-	<property>
-        <name>ozone.s3g.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.s3g.kerberos.keytab.file</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-	<property>
-        <name>dfs.datanode.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>dfs.datanode.keytab.file</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-	<property>
-        <name>hdds.datanode.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>hdds.datanode.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-	<property>
-        <name>ozone.om.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.om.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-		<property>
-        <name>ozone.recon.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.recon.kerberos.keytab.file</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-
-	<property>
-        <name>ozone.recon.http.auth.kerberos.principal</name>
-        <value>ozone/_HOST@EU-WEST-1.COMPUTE.INTERNAL</value>	
-	</property>	
-	<property>
-        <name>ozone.recon.http.auth.kerberos.keytab</name>
-        <value>/etc/security/keytabs/ozone.keytab</value>	
-	</property>
-	
 </configuration>

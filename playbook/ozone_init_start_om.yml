@@ -1,6 +1,6 @@
 
 - name: init & start ozone OM master
-  hosts: om
+  hosts: om1
   become: true
   become_user: ozone
   tasks:

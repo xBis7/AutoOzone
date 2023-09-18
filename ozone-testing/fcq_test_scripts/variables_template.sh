@@ -1,0 +1,5 @@
+S3G1_HOSTNAME="setme"
+S3G2_HOSTNAME="setme"
+S3G3_HOSTNAME="setme"
+
+HOSTNAME_SUFFIX="setme"

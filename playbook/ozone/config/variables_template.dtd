@@ -1,0 +1,19 @@
+<!ENTITY om1-hostname "setme">
+<!ENTITY om2-hostname "setme">
+<!ENTITY om3-hostname "setme">
+
+<!ENTITY scm1-hostname "setme">
+<!ENTITY scm2-hostname "setme">
+<!ENTITY scm3-hostname "setme">
+
+<!ENTITY s3g1-hostname "setme">
+<!ENTITY s3g2-hostname "setme">
+<!ENTITY s3g3-hostname "setme">
+
+<!ENTITY dn1-hostname "setme">
+<!ENTITY dn2-hostname "setme">
+<!ENTITY dn3-hostname "setme">
+
+<!ENTITY recon-hostname "setme">
+
+<!ENTITY hostname-suffix "setme">

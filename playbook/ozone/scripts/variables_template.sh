@@ -1,0 +1,3 @@
+FREEIPA_HOSTNAME="setme"
+
+HOSTNAME_SUFFIX="setme"

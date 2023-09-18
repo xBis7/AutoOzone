@@ -1,5 +1,5 @@
-- name: install ozone
-  hosts: all
+- name: run loader
+  hosts: datanode
   become: true
 
   tasks:

@@ -13,7 +13,7 @@
   - name: Start SCM
     command: /hadoop/app/ozone/bin/start_scm.sh
     async: 120
-    poll: 5  
+    poll: 5 
 
 - name: init & start ozone SCM2 HA masters
   hosts: scm2

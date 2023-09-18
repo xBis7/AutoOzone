@@ -12,6 +12,7 @@
     user:
       name: ozone
       state: present
+      group: hadoop
       
 
 
@@ -33,15 +34,27 @@
       state: directory
       group: hadoop
       mode: '0775'
-  - name: Download ozone
-    get_url:
-      url: https://downloads.apache.org/ozone/1.2.0/ozone-1.2.0.tar.gz
-      dest: /hadoop/app/ozone/hadoop-ozone-1.2.0.tar.gz
+#  - name: Download ozone
+#    get_url:
+#      url: https://dlcdn.apache.org/ozone/1.3.0/ozone-1.3.0.tar.gz
+#      dest: /hadoop/app/ozone/ozone-1.3.0.tar.gz
+#      mode: '0775'
+#      checksum: "sha512:65143549fa7b81aa0587757e1482e9ac8d76e8af105c990176981c934088d0f8cf1ea3d4be31a21f707b0f0a8df1f60e41d26f0482207edba98a07ef5d105811"
+
+#      validate_certs: no
+
+
+  - name: Copy ozone tar
+    copy:
+      src: ../../HDDS-9207-logs.tar.gz
+      dest: /hadoop/app/ozone/HDDS-9207-logs.tar.gz
+      owner: ozone
+      group: hadoop
       mode: '0775'
-      
+
   - name: Extract Ozone jar
     unarchive:
-      src: /hadoop/app/ozone/hadoop-ozone-1.2.0.tar.gz
+      src: /hadoop/app/ozone/HDDS-9207-logs.tar.gz
       dest: /hadoop/app/ozone/
       remote_src: yes
       mode: '0775'
@@ -66,21 +79,5 @@
       owner: ozone
       group: hadoop
       mode: '0754'
-
-  - name: Copy core-site.xml
-    copy:
-      src: ./ozone/config/core-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/core-site.xml
-      owner: ozone
-      group: hadoop
-      mode: '0644'
-  - name: Copy ozone-site.xml
-    copy:
-      src: ./ozone/config/ozone-site.xml
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
-      owner: ozone
-      group: hadoop
-      mode: '0644'
-
 
 - import_playbook: set_linux_config.yml

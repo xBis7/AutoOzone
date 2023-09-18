@@ -1,0 +1,12 @@
+freeipa_hostname: "setme"
+
+om1_scm1_hostname: "setme"
+om2_scm2_hostname: "setme"
+om3_scm3_hostname: "setme"
+
+dn1_hostname: "setme"
+dn2_hostname: "setme"
+dn3_hostname: "setme"
+
+hostname_suffix: "setme"
+hostname_suffix_upper: "SETME"
