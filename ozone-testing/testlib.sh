@@ -406,32 +406,32 @@ replaceFilesWithBackup() {
   then
     # Delete data for all nodes
     doAnsibleWithNodeNameAsRoot "om1" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om1/scm1/recon"
+    echo "Deleted data for om1/scm1/s3g1/recon"
     doAnsibleWithNodeNameAsRoot "om1" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om1" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "om2" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om2/scm2"
+    echo "Deleted data for om2/scm2/s3g2"
     doAnsibleWithNodeNameAsRoot "om2" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om2" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "om3" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om3/scm3"
+    echo "Deleted data for om3/scm3/s3g3"
     doAnsibleWithNodeNameAsRoot "om3" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om3" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
     
     doAnsibleWithNodeNameAsRoot "dn1" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn1/s3g1"
+    echo "Deleted data for dn1"
     doAnsibleWithNodeNameAsRoot "dn1" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn1" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "dn2" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn2/s3g2"
+    echo "Deleted data for dn2"
     doAnsibleWithNodeNameAsRoot "dn2" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn2" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "dn3" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn3/s3g3"
+    echo "Deleted data for dn3"
     doAnsibleWithNodeNameAsRoot "dn3" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn3" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
   else
@@ -466,32 +466,32 @@ replaceFilesWithBootstrapBackup() {
   then
     # Delete data for all nodes
     doAnsibleWithNodeNameAsRoot "om1" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om1/scm1/recon"
+    echo "Deleted data for om1/scm1/s3g1/recon"
     doAnsibleWithNodeNameAsRoot "om1" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om1" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "om2" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om2/scm2"
+    echo "Deleted data for om2/scm2/s3g2"
     doAnsibleWithNodeNameAsRoot "om2" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om2" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "om3" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for om3/scm3"
+    echo "Deleted data for om3/scm3/s3g3"
     doAnsibleWithNodeNameAsRoot "om3" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "om3" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
     
     doAnsibleWithNodeNameAsRoot "dn1" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn1/s3g1"
+    echo "Deleted data for dn1"
     doAnsibleWithNodeNameAsRoot "dn1" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn1" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "dn2" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn2/s3g2"
+    echo "Deleted data for dn2"
     doAnsibleWithNodeNameAsRoot "dn2" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn2" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
 
     doAnsibleWithNodeNameAsRoot "dn3" shell "rm -rf $oz_root_dir/*"
-    echo "Deleted data for dn3/s3g3"
+    echo "Deleted data for dn3"
     doAnsibleWithNodeNameAsRoot "dn3" shell "ls -lah $oz_root_dir"
     doAnsibleWithNodeNameAsRoot "dn3" shell "cd $backup_dir; tar cf - . -p | (cd $oz_root_dir; tar xvf -)"
   else
@@ -535,27 +535,27 @@ copyTermOutToAllNodesAndClearFile() {
 deleteBackupData() {
   backup_dir="/hadoop/testBackup"
   doAnsibleWithNodeNameAsRoot "om1" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for om1/scm1/recon, ls -lah $backup_dir"
+  echo "Backup data deleted for om1/scm1/s3g1/recon, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "om1" shell "ls -lah $backup_dir"
 
   doAnsibleWithNodeNameAsRoot "om2" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for om2/scm2, ls -lah $backup_dir"
+  echo "Backup data deleted for om2/scm2/s3g2, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "om2" shell "ls -lah $backup_dir"
 
   doAnsibleWithNodeNameAsRoot "om3" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for om3/scm3, ls -lah $backup_dir"
+  echo "Backup data deleted for om3/scm3/s3g3, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "om3" shell "ls -lah $backup_dir"
 
   doAnsibleWithNodeNameAsRoot "dn1" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for dn1/s3g1, ls -lah $backup_dir"
+  echo "Backup data deleted for dn1, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "dn1" shell "ls -lah $backup_dir"
 
   doAnsibleWithNodeNameAsRoot "dn2" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for dn2/s3g2, ls -lah $backup_dir"
+  echo "Backup data deleted for dn2, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "dn2" shell "ls -lah $backup_dir"
 
   doAnsibleWithNodeNameAsRoot "dn3" shell "rm -rf $backup_dir/*"
-  echo "Backup data deleted for dn3/s3g3, ls -lah $backup_dir"
+  echo "Backup data deleted for dn3, ls -lah $backup_dir"
   doAnsibleWithNodeNameAsRoot "dn3" shell "ls -lah $backup_dir"
 }
 
