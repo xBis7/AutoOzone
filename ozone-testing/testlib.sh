@@ -618,7 +618,7 @@ deleteOMData() {
     exit 1
   fi
 
-  echo "Deleted all data for $($om)"
+  echo "Deleted all data for $om"
 }
 
 startOM() {
