@@ -37,7 +37,6 @@ dataValidation() {
   # Check snaps and their keys on stopped_follower
   # The snap diff includes the parent directories as well, we will ignore them.
 
-  # This function needs some improvements, checking more snap diffs, key values, etc.
   checkSnapsAndKeysOnLeaderOM $om_hostname $volume $bucket $NUM_KEYS_PER_SNAPSHOT $NUM_SNAPSHOTS
 
   doAnsible $om_hostname shell "cat /hadoop/app/ozone/logs/ozone-ozone-om-$om_hostname.log | grep 'download the latest snapshot'"

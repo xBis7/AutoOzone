@@ -138,7 +138,6 @@ loadTest() {
   # Check snaps and their keys on stopped_follower
   # The snap diff includes the parent directories as well, we will ignore them.
 
-  # This function needs some improvements, checking more snap diffs, key values, etc.
   checkSnapsAndKeysOnLeaderOM $stopped_follower $volume $bucket $NUM_KEYS_PER_SNAPSHOT $NUM_SNAPSHOTS
 
   doAnsible $stopped_follower shell "cat /hadoop/app/ozone/logs/ozone-ozone-om-$stopped_follower.log | grep 'download the latest snapshot'"

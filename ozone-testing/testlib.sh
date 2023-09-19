@@ -938,6 +938,7 @@ checkSnapsAndKeysOnLeaderOM() {
       if [[ $diff_key_num != $NUM_KEYS_PER_SNAPSHOT ]]; then
         echo "Number of diff keys on the follower is not '$NUM_KEYS_PER_SNAPSHOT'"
         echo "Number of diff keys on the follower is '$diff_key_num'"
+        exit 1
       fi
 
       checkKeyValuesFromFile $filename $om $volume $bucket "snap-$snap_num2" "$NUM_KEYS_PER_SNAPSHOT"
