@@ -25,7 +25,9 @@
 
   <property>
     <name>ranger.plugin.ozone.policy.rest.url</name>
-    <value>https://manager00001.ospr-hadoop001-s.wl.vgis.mydomain.zone:6182/,https://manager00002.ospr-hadoop001-s.wl.vgis.mydomain.zone:6182/</value>
+    <value>
+      https://manager00001.ospr-hadoop001-s.wl.vgis.mydomain.zone:6182/,https://manager00002.ospr-hadoop001-s.wl.vgis.mydomain.zone:6182/
+    </value>
   </property>
 
   <property>

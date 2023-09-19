@@ -3,28 +3,29 @@
     http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an 
   "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and 
   limitations under the License. See accompanying LICENSE file.
---> <!-- Put site-specific property overrides in this file. --> 
+--> <!-- Put site-specific property overrides in this file. -->
 <!DOCTYPE configuration SYSTEM "variables.dtd">
 
-<configuration> 
-<property> 
-	<name>hadoop.security.auth_to_local</name> 
-        <value>RULE:[1:$1@$0](.*@&hostname-suffix;)s/@.*// 
-		RULE:[2:$1@$0](.*@&hostname-suffix;)s/@.*// </value>
-		                  
+<configuration>
+  <property>
+    <name>hadoop.security.auth_to_local</name>
+    <value>RULE:[1:$1@$0](.*@&hostname-suffix;)s/@.*//
+      RULE:[2:$1@$0](.*@&hostname-suffix;)s/@.*//
+    </value>
 
-</property> 
-<property>
-	<name>hadoop.http.authentication.type</name> 
-	<value>kerberos</value> 
-</property> 
-<property> 
-	<name>dfs.data.transfer.protection</name> 
-        <value>authentication</value>
-</property>
- <property> 
-	<name>hadoop.security.authentication</name> 
-	<value>kerberos</value> 
-</property>
-	
+
+  </property>
+  <property>
+    <name>hadoop.http.authentication.type</name>
+    <value>kerberos</value>
+  </property>
+  <property>
+    <name>dfs.data.transfer.protection</name>
+    <value>authentication</value>
+  </property>
+  <property>
+    <name>hadoop.security.authentication</name>
+    <value>kerberos</value>
+  </property>
+
 </configuration>

@@ -7,7 +7,7 @@ loadTest() {
   bucket=$2
   NUM_KEYS=$3
   # There is pagination on snap diff, we can't get more than 1000 keys at a time.
-  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000, 
+  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000,
   # otherwise we can't reliably check the number of keys on the result.
   NUM_KEYS_PER_SNAPSHOT=$4
   NUM_SNAPSHOTS=$5
@@ -25,8 +25,7 @@ loadTest() {
   leader_name=$(getNodeNameFromHostname $leader_om "om")
   echo "Current leader name: $leader_name"
   # Make sure that the leader is always, om1
-  if [ $leader_name != "om1"  ]
-  then
+  if [ $leader_name != "om1" ]; then
     # $om_hostname belongs to om1.
     transferOMLeadership $om_hostname
   fi
@@ -47,16 +46,15 @@ loadTest() {
   stopped_follower=$follower_om1
 
   # If follower1 isn't om2, then follower2 will be the stopped om.
-  if [ $follower_name != "om2" ]
-  then
+  if [ $follower_name != "om2" ]; then
     stopped_follower=$follower_om2
   fi
 
   # Stop the follower.
   stopOM $stopped_follower
 
-  # If we are in a secure cluster, we can't delete OM's data, 
-  # because the system will continue to recognise the OM but it will have 
+  # If we are in a secure cluster, we can't delete OM's data,
+  # because the system will continue to recognise the OM but it will have
   # no certificates stored under it and we won't be able to restart the OM.
   #
   # As long as the old data are still there, the OM doesn't need initialization.

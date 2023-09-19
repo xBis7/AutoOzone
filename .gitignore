@@ -5,9 +5,11 @@ inv_tiglab
 variables.sh
 *.txt
 .DS_Store
+.idea
+.idea/*
 ozone-testing/.DS_Store
 ozone-testing/om_bootstrap_test_scripts/.DS_Store
 ozone-testing/fcq_test_scripts/variables.sh
 ozone-testing/fcq_test_scripts/run_on_node/variables.sh
-
+AutoOzone.iml
 

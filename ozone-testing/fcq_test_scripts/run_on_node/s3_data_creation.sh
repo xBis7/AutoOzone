@@ -12,7 +12,7 @@ bucket_res=$(/hadoop/app/ozone/bin/ozone sh bucket info /s3v/bucket)
 
 if [[ $bucket_res == *"BUCKET_NOT_FOUND"* ]]
 then
-    /hadoop/app/ozone/bin/ozone sh bucket create /s3v/bucket1
+  /hadoop/app/ozone/bin/ozone sh bucket create /s3v/bucket1
 fi
 
 export AWS_ACCESS_KEY=$oz_user AWS_SECRET_KEY=pass

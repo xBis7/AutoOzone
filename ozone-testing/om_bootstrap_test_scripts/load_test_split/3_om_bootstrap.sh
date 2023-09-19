@@ -24,8 +24,7 @@ testRatisSnap() {
 
   # Compare current leader name with the bootstrap OM name.
   # Make sure that the leader OM is different than the one to be used for bootstrap.
-  if [ $leader_name == $bootstrap_om_name  ]
-  then
+  if [ $leader_name == $bootstrap_om_name ]; then
     # Get the first follower.
     follower_om=$(getOMBasedOnRole $om_hostname "follower")
     transferOMLeadership $follower_om
@@ -40,8 +39,8 @@ testRatisSnap() {
 
   date
 
-  # If we are in a secure cluster, we can't delete OM's data, 
-  # because the system will continue to recognise the OM but it will have 
+  # If we are in a secure cluster, we can't delete OM's data,
+  # because the system will continue to recognise the OM but it will have
   # no certificates stored under it and we won't be able to restart the OM.
   #
   # As long as the old data are still there, the OM doesn't need initialization.
@@ -63,7 +62,7 @@ testRatisSnap() {
 
   date
 
-  bootstrappedOmDataBackup $backup_dir_num > backup_out_tmp.txt
+  bootstrappedOmDataBackup $backup_dir_num >backup_out_tmp.txt
 
   date
 }

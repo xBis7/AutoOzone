@@ -7,7 +7,7 @@ loadTest() {
   bucket=$2
   NUM_KEYS=$3
   # There is pagination on snap diff, we can't get more than 1000 keys at a time.
-  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000, 
+  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000,
   # otherwise we can't reliably check the number of keys on the result.
   NUM_KEYS_PER_SNAPSHOT=$4
   NUM_SNAPSHOTS=$5
@@ -25,8 +25,7 @@ loadTest() {
   leader_name=$(getNodeNameFromHostname $leader_om "om")
   echo "Current leader name: $leader_name"
   # Make sure that the leader is always, om1
-  if [ $leader_name != "om1"  ]
-  then
+  if [ $leader_name != "om1" ]; then
     # $om_hostname belongs to om1.
     transferOMLeadership $om_hostname
   fi
@@ -47,8 +46,7 @@ loadTest() {
   stopped_follower=$follower_om1
 
   # If follower1 isn't om2, then follower2 will be the stopped om.
-  if [ $follower_name != "om2" ]
-  then
+  if [ $follower_name != "om2" ]; then
     stopped_follower=$follower_om2
   fi
 
@@ -60,16 +58,14 @@ loadTest() {
   # Create them to specify bucket layout.
   #createVolBucketKeys $leader_om $volume $bucket "OBJECT_STORE" $NUM_KEYS
 
-
-  # We need NUM_KEYS to become an odd number in order 
+  # We need NUM_KEYS to become an odd number in order
   # to able to divide it evenly in 3 pieces.
-  while [[  $(expr $NUM_KEYS % 3) != 0 ]]
-  do
+  while [[ $(expr $NUM_KEYS % 3) != 0 ]]; do
     echo "NUM_KEYS=$NUM_KEYS isn't an odd num, decr..."
-    NUM_KEYS=$(($NUM_KEYS-1))
+    NUM_KEYS=$(($NUM_KEYS - 1))
   done
 
-  keys_per_client=$(($NUM_KEYS/3))
+  keys_per_client=$(($NUM_KEYS / 3))
 
   doAnsibleFreonKeyCreation $datanode1 $datanode2 $datanode3 "omkg" $volume $bucket "init" "$((1 + $RANDOM % 100))" "$keys_per_client" 1000
 
@@ -84,48 +80,46 @@ loadTest() {
   # snap_keys_per_client=$(($NUM_KEYS_PER_SNAPSHOT/3))
 
   # clear the file
-  > ./snaps.txt
+  >./snaps.txt
 
   #snap_inc=$((1 + $RANDOM % 10))
   counter=0
 
   keys_snaps_start_time=$(date +%s)
-  
-  while [ $counter -lt $NUM_SNAPSHOTS ]
-  do
+
+  while [ $counter -lt $NUM_SNAPSHOTS ]; do
     # Create a user-provided number keys and take a snapshot.
     # Repeat until NUM_SNAPSHOTS is reached.
-  #  	doAnsibleFreonKeyCreation $datanode1 $datanode2 $datanode3 "omkg" $volume $bucket "sn$snap_inc" "$((1 + $RANDOM % 100))" "$snap_keys_per_client" 1000 "$key_size" ""
+    #  	doAnsibleFreonKeyCreation $datanode1 $datanode2 $datanode3 "omkg" $volume $bucket "sn$snap_inc" "$((1 + $RANDOM % 100))" "$snap_keys_per_client" 1000 "$key_size" ""
 
     # threads=$(($NUM_KEYS_PER_SNAPSHOT/2))
     # doAnsibleFreonKeyCreationOneNode $datanode1 "ockg" $volume $bucket "sn$counter" "$((1 + $RANDOM % 100))" "$NUM_KEYS_PER_SNAPSHOT" $threads "$key_size" ""
 
     # 0 || (100, 200, 300, ..., 900) || (101, 201, 301, ..., 901)
-    if [[ $counter == 0 || $(expr $counter % 100) == 0 || $(expr $counter % 100) == 1 ]]
-    then
+    if [[ $counter == 0 || $(expr $counter % 100) == 0 || $(expr $counter % 100) == 1 ]]; then
       manualKeyWriting "$leader_om" "$volume" "$bucket" "sn$counter" 10
-    else 
+    else
       doAnsibleFreonKeyCreationOneNode $datanode1 "omkg" $volume $bucket "sn$counter" "$NUM_KEYS_PER_SNAPSHOT" 5 "" ""
     fi
 
     doAnsible $leader_om shell "/hadoop/app/ozone/bin/ozone sh snapshot create /$volume/$bucket snap-$counter"
-      
+
     # Write snap names to file.
-    echo "snap-$counter" >> ./snaps.txt
+    echo "snap-$counter" >>./snaps.txt
 
     # Prefix number and snapshot number
-  #snap_inc=$(($snap_inc+1))
+    #snap_inc=$(($snap_inc+1))
 
     echo "Finished iteration '$counter'."
     # Current snapshot counter
-    counter=$(($counter+1))
+    counter=$(($counter + 1))
   done
 
   keys_snaps_end_time=$(date +%s)
   echo "Successful key and snapshot creation. Elapsed time: $(($keys_snaps_end_time - $keys_snaps_start_time)) seconds"
 
-  # If we are in a secure cluster, we can't delete OM's data, 
-  # because the system will continue to recognise the OM but it will have 
+  # If we are in a secure cluster, we can't delete OM's data,
+  # because the system will continue to recognise the OM but it will have
   # no certificates stored under it and we won't be able to restart the OM.
   #
   # As long as the old data are still there, the OM doesn't need initialization.

@@ -17,7 +17,7 @@
     <name>xasecure.audit.destination.file.dir</name>
     <value>/var/log/ranger-plugin-audit/ozone</value>
   </property>
-  
+
   <property>
     <name>xasecure.audit.destination.file.file.rollover.sec</name>
     <value>21600</value>

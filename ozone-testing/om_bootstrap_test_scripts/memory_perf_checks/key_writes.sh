@@ -29,30 +29,25 @@ echo "leader: $leader_om"
 echo "follower1: $follower_om1"
 echo "follower2: $follower_om2"
 
-if [[ $one_node == "true" ]]
-then
+if [[ $one_node == "true" ]]; then
   i=0
-  while [[ $i -lt $ITERATION_NUM ]]
-  do
+  while [[ $i -lt $ITERATION_NUM ]]; do
     doAnsibleFreonKeyCreationOneNode $datanode1 "$freon_cmd" $volume $bucket "sn$i" "$((1 + $RANDOM % 100))" "$NUM_KEYS" 1000 "$key_size" "$buffer_size"
-    i=$(($i+1))
+    i=$(($i + 1))
     echo "finished $i iteration"
   done
 else
-  while [[  $(expr $NUM_KEYS % 3) != 0 ]]
-  do
+  while [[ $(expr $NUM_KEYS % 3) != 0 ]]; do
     echo "NUM_KEYS=$NUM_KEYS isn't an odd num, decr..."
-    NUM_KEYS=$(($NUM_KEYS-1))
+    NUM_KEYS=$(($NUM_KEYS - 1))
   done
 
-  keys_per_client=$(($NUM_KEYS/3))
+  keys_per_client=$(($NUM_KEYS / 3))
 
   i=0
-  while [[ $i -lt $ITERATION_NUM ]]
-  do
+  while [[ $i -lt $ITERATION_NUM ]]; do
     doAnsibleFreonKeyCreation $datanode1 $datanode2 $datanode3 "$freon_cmd" $volume $bucket "sn$i" "$((1 + $RANDOM % 100))" "$keys_per_client" 1000 "$key_size" "$buffer_size"
-    i=$(($i+1))
+    i=$(($i + 1))
     echo "finished $i iteration"
   done
 fi
-

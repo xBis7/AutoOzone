@@ -8,7 +8,7 @@ dataValidation() {
   bucket=$3
   NUM_KEYS=$4
   # There is pagination on snap diff, we can't get more than 1000 keys at a time.
-  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000, 
+  # NUM_KEYS_PER_SNAPSHOT can't be more than 1000,
   # otherwise we can't reliably check the number of keys on the result.
   NUM_KEYS_PER_SNAPSHOT=$5
   NUM_SNAPSHOTS=$6
@@ -22,8 +22,7 @@ dataValidation() {
   leader_om=$(getOMBasedOnRole $om_hostname "leader")
 
   # Check if the provided om is leader. If not, transfer leadership to it.
-  if [ "$leader_om" != "$om_hostname" ]
-  then
+  if [ "$leader_om" != "$om_hostname" ]; then
     transferOMLeadership $om_hostname
   fi
 

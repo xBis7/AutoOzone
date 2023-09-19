@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 om=$1
 volume=$2

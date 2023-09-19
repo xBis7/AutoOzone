@@ -13,7 +13,7 @@ bucket_res=$(doAnsibleWithNodeNameAsOzUser "om1" "oz1" shell "/hadoop/app/ozone/
 
 if [[ $bucket_res == *"BUCKET_NOT_FOUND"* ]]
 then
-    doAnsibleWithNodeNameAsOzUser "om1" "oz1" shell "/hadoop/app/ozone/bin/ozone sh bucket create /s3v/bucket1"
+  doAnsibleWithNodeNameAsOzUser "om1" "oz1" shell "/hadoop/app/ozone/bin/ozone sh bucket create /s3v/bucket1"
 fi
 
 doAnsibleWithNodeNameAsOzUser "$node_name" "$oz_user" shell "/hadoop/app/ozone/bin/ozone freon omkg -t $threads -n $keys -b bucket1 -p $key_prefix"
