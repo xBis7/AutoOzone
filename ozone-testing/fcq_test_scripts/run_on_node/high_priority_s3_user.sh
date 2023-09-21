@@ -17,6 +17,6 @@ export AWS_ACCESS_KEY=$oz_user AWS_SECRET_KEY=pass
 for i in {0..99} 
 do
   sleep 2
-  /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 10 -n 1000 -b bucket1 -p s3high$i
+  /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 10 -n 100 -b bucket1 -p s3high$i
 done
 
