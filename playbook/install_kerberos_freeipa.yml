@@ -5,8 +5,8 @@
     admin_pwd: setme
 
 - name: Import external variables
-    include_vars:
-      file: variables.yml
+  include_vars:
+    file: variables.yml
 
   tasks:
   - name: check if we need to run it
