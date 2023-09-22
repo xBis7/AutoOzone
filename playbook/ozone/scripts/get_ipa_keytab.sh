@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "/data/AutoOzone/variables.sh"
+source "/hadoop/app/ozone/bin/variables.sh"
 
 kinit -kt /etc/krb5.keytab
 h=$(hostname)
