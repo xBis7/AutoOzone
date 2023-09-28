@@ -148,7 +148,7 @@
 
   <property>
     <name>ipc.9862.backoff.enable</name>
-    <value>false</value>
+    <value>true</value>
   </property>
 
   <property>
