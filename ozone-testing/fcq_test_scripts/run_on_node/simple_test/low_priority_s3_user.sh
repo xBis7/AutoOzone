@@ -10,22 +10,30 @@ for i in {0..2}
 do
   /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 3 -n 10 -b bucket1
   sleep 60
+
+  echo "Finished iteration '$i' / 10 keys"
 done
 
 for i in {0..2} 
 do
   /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 10 -n 100 -b bucket1
   sleep 60
+
+  echo "Finished iteration '$i' / 100 keys"
 done
 
 for i in {0..2} 
 do
   /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 10 -n 1000 -b bucket1
   sleep 60
+
+  echo "Finished iteration '$i' / 1000 keys"
 done
 
 for i in {0..2} 
 do
   /hadoop/app/ozone/bin/ozone freon s3kg -e http://$S3G1_HOSTNAME:9878 -t 10 -n 10000 -b bucket1
   sleep 60
+
+  echo "Finished iteration '$i' / 10000 keys"
 done
