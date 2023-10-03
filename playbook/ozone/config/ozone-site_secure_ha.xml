@@ -32,6 +32,12 @@
     <value>/hadoop/ozone/data/disk1/om</value>
   </property>
 
+<!-- Enable shareable tmp dir -->
+  <property>
+    <name>ozone.om.enable.ofs.shared.tmp.dir</name>
+    <value>true</value>
+  </property>
+
   <property>
     <name>ozone.scm.db.dirs</name>
     <value>/hadoop/ozone/data/disk1/scm</value>
