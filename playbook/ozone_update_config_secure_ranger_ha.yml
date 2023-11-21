@@ -13,11 +13,12 @@
       force: yes
   - name: Create dir for ranger policies cache
     file:
-      path: /tmp/ranger/ozonedev/policycache/
+      path: /tmp/ranger/ozonedev/policycache
       state: directory
       owner: ozone
       group: hadoop
-      mode: '0664'
+      mode: '0755'
+      #      recursive: yes
       force: yes
   - name: Copy ranger jar
     copy:
@@ -56,7 +57,7 @@
       mode: '0644'
   - name: Copy ozone-site_ranger_ha.xml
     copy:
-      src: ./ozone/config/ozone-site_ranger_ha.xml
+      src: ./ozone/config/ozone-site_secure_ranger_ha.xml
       dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
       owner: ozone
       group: hadoop

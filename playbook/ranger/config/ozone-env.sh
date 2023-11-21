@@ -278,4 +278,5 @@ export OZONE_OS_TYPE=${OZONE_OS_TYPE:-$(uname -s)}
 # For example, to limit who can execute the om command,
 # export OZONE_OM_USER=ozone
 
+# Required for Ranger
 export OZONE_CLASSPATH=/hadoop/ranger/ranger-ozone-plugin-3.0.0-SNAPSHOT.jar
