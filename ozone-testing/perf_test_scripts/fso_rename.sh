@@ -41,7 +41,7 @@ echo "Renaming $dir/ for FSO"
 fso_dir_start_time=$(date +%s%N)
 time doAnsibleWithNodeName $node_name "shell" "/hadoop/app/ozone/bin/ozone sh key rename /$volume/$fso_bucket $dir/ renamed$dir/"
 fso_dir_end_time=$(date +%s%N)
-echo "Finished rename for '/$volume/$fso_bucket/dir1/'. Elapsed time: $(($(($fso_dir_end_time-$fso_dir_start_time))/1000000)) ms"
+echo "Finished rename for '/$volume/$fso_bucket/$dir/'. Elapsed time: $(($(($fso_dir_end_time-$fso_dir_start_time))/1000000)) ms"
 
 echo "*** Key rename ***"
 echo ""
