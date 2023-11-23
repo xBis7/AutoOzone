@@ -730,7 +730,19 @@ getOMBasedOnRole() {
 
 kinitHost() {
   host=$1
-  doAnsible $host shell "kinit -kt /etc/security/keytabs/ozone.keytab ozone/$host@EU-WEST-1.COMPUTE.INTERNAL"
+  doAnsible $host shell "kinit -kt /etc/security/keytabs/ozone.keytab ozone/$host@$HOSTNAME_SUFFIX"
+}
+
+kinitHostWithNodeName() {
+  name=$1
+  hostname=$(getHostnameFromNodeName $name)
+
+  if [[ $hostname != "Unknown"* ]]; then
+    doAnsible $hostname shell "kinit -kt /etc/security/keytabs/ozone.keytab ozone/$hostname@$HOSTNAME_SUFFIX"
+  else
+    echo "$hostname Exiting..."
+    exit 1
+  fi
 }
 
 checkRatisSnapshotIns() {
