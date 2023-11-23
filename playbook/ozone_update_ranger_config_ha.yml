@@ -1,0 +1,63 @@
+- name: install ozone
+  hosts: all
+  become: true
+
+  tasks:
+  - name: Create directories on path if not exist
+    file:
+      path: /hadoop/ranger
+      state: directory
+      owner: ozone
+      group: hadoop
+      mode: '0755'
+      force: yes
+  - name: Create dir for ranger policies cache
+    file:
+      path: /tmp/ranger/ozonedev/policycache/
+      state: directory
+      owner: ozone
+      group: hadoop
+      mode: '0664'
+      force: yes
+  - name: Copy ranger jar
+    copy:
+      src: ./ranger/lib/ranger-ozone-plugin-3.0.0-SNAPSHOT.jar
+      dest: /hadoop/ranger/ranger-ozone-plugin-3.0.0-SNAPSHOT.jar
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ozone-env.sh
+    copy:
+      src: ./ranger/config/ozone-env.sh
+      dest: /hadoop/app/ozone/etc/hadoop/ozone-env.sh
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ranger-ozone-audit.xml
+    copy:
+      src: ./ranger/config/ranger-ozone-audit.xml
+      dest: /hadoop/app/ozone/etc/hadoop/ranger-ozone-audit.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ranger-ozone-security.xml
+    copy:
+      src: ./ranger/config/ranger-ozone-security.xml
+      dest: /hadoop/app/ozone/etc/hadoop/ranger-ozone-security.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ranger-policymgr-ssl.xml
+    copy:
+      src: ./ranger/config/ranger-policymgr-ssl.xml
+      dest: /hadoop/app/ozone/etc/hadoop/ranger-policymgr-ssl.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ozone-site_ranger_ha.xml
+    copy:
+      src: ./ozone/config/ozone-site_ranger_ha.xml
+      dest: /hadoop/app/ozone/etc/hadoop/ozone-site.xml
+      owner: ozone
+      group: hadoop
+      mode: '0644'
