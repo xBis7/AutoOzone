@@ -34,18 +34,18 @@ echo "/$volume/$fso_bucket/$dir/dir2/key3"
 echo "/$volume/$fso_bucket/$dir/dir2/dir3/key4"
 echo "/$volume/$fso_bucket/$dir/dir2/dir3/key5"
 
-echo "*** Directory rename ***"
 echo ""
 
+echo "*** Directory rename ***"
 echo "Renaming $dir/ for FSO"
 fso_dir_start_time=$(date +%s%N)
 time doAnsibleWithNodeName $node_name "shell" "/hadoop/app/ozone/bin/ozone sh key rename /$volume/$fso_bucket $dir/ renamed$dir/"
 fso_dir_end_time=$(date +%s%N)
 echo "Finished rename for '/$volume/$fso_bucket/$dir/'. Elapsed time: $(($(($fso_dir_end_time-$fso_dir_start_time))/1000000)) ms"
 
-echo "*** Key rename ***"
 echo ""
 
+echo "*** Key rename ***"
 echo "Renaming renamed$dir/dir2/dir3/key4 for FSO"
 fso_key_start_time=$(date +%s%N)
 time doAnsibleWithNodeName $node_name "shell" "/hadoop/app/ozone/bin/ozone sh key rename /$volume/$fso_bucket renamed$dir/dir2/dir3/key4 renamed$dir/dir2/dir3/renamedkey4"
