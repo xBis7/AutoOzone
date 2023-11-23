@@ -27,6 +27,18 @@
     </description>
   </property>
 
+<!-- Tracing -->
+  <property>
+    <name>hdds.tracing.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>ozone.metastore.rocksdb.statistics</name>
+    <value>ALL</value>
+  </property>
+<!--  -->
+
   <property>
     <name>ozone.om.db.dirs</name>
     <value>/hadoop/ozone/data/disk1/om</value>

@@ -62,6 +62,17 @@
     <value>/hadoop/ozone/data/disk1/recon</value>
   </property>
 
+<!-- Tracing -->
+  <property>
+    <name>hdds.tracing.enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <name>ozone.metastore.rocksdb.statistics</name>
+    <value>ALL</value>
+  </property>
+<!--  -->
 
   <property>
     <name>hdds.datanode.dir</name>
