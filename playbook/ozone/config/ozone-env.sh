@@ -280,3 +280,9 @@ export OZONE_OS_TYPE=${OZONE_OS_TYPE:-$(uname -s)}
 
 # Required for Ranger
 export OZONE_CLASSPATH=/hadoop/ranger/ranger-ozone-plugin-3.0.0-SNAPSHOT.jar
+
+
+# Jaeger
+export JAEGER_SAMPLER_PARAM=1
+export JAEGER_SAMPLER_TYPE=const
+export JAEGER_AGENT_HOST=jaeger

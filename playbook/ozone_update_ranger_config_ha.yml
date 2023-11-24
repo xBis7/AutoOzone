@@ -28,7 +28,7 @@
       mode: '0644'
   - name: Copy ozone-env.sh
     copy:
-      src: ./ranger/config/ozone-env.sh
+      src: ./ozone/config/ozone-env.sh
       dest: /hadoop/app/ozone/etc/hadoop/ozone-env.sh
       owner: ozone
       group: hadoop
