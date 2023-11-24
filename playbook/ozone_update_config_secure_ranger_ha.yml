@@ -27,13 +27,6 @@
       owner: ozone
       group: hadoop
       mode: '0644'
-  - name: Copy ozone-env.sh
-    copy:
-      src: ./ozone/config/ozone-env.sh
-      dest: /hadoop/app/ozone/etc/hadoop/ozone-env.sh
-      owner: ozone
-      group: hadoop
-      mode: '0644'
   - name: Copy ranger-ozone-audit.xml
     copy:
       src: ./ranger/config/ranger-ozone-audit.xml

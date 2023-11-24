@@ -32,7 +32,20 @@
       owner: ozone
       group: hadoop
       mode: '0644'
-
+  - name: Copy variables.sh
+    copy:
+      src: ../variables.sh
+      dest: /hadoop/app/ozone/etc/hadoop/variables.sh
+      owner: ozone
+      group: hadoop
+      mode: '0644'
+  - name: Copy ozone-env.sh
+    copy:
+      src: ./ozone/config/ozone-env.sh
+      dest: /hadoop/app/ozone/etc/hadoop/ozone-env.sh
+      owner: ozone
+      group: hadoop
+      mode: '0644'
 
 
 

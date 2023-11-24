@@ -16,6 +16,7 @@
 # limitations under the License.
 
 # Set Ozone-specific environment variables here.
+source "./variables.sh"
 
 # Enable core dump when crash in C++
 ulimit -c unlimited
@@ -285,4 +286,5 @@ export OZONE_CLASSPATH=/hadoop/ranger/ranger-ozone-plugin-3.0.0-SNAPSHOT.jar
 # Jaeger
 export JAEGER_SAMPLER_PARAM=1
 export JAEGER_SAMPLER_TYPE=const
-export JAEGER_AGENT_HOST=jaeger
+export JAEGER_AGENT_HOST=$DN1_HOSTNAME
+export JAEGER_AGENT_PORT=6831
